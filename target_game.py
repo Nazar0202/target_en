@@ -40,7 +40,7 @@ def get_words(f: str, letters: List[str]) -> List[str]:
             data.append(line.lower().rstrip())
     tmp_ans = []
     for word in data:
-        if (len(word) > 4) and (cent not in word):
+        if (len(word) >= 4) and (cent in word):
             tmp_ans.append(word)
     for word in tmp_ans:
         tf = True
@@ -94,4 +94,5 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
 def results():
     pass
 
-print(get_words('en.txt', ['a','b','c','d','e','f','g','h','a']))
+#print(get_words('en.txt', ['a','b','c','d','e','f','g','h','a']))
+#print(get_words('en.txt', [el for el in 'wumrovkif']))
