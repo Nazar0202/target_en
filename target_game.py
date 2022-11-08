@@ -80,7 +80,8 @@ def get_user_words() -> List[str]:
 
 
 
-def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
+def get_pure_user_words(user_words: \
+    List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
 
@@ -124,7 +125,7 @@ def results():
         print(g)
         for a in g:
             lst.append(a)
-    alll = get_words('en.txt', lst)  
+    alll = get_words('en.txt', lst)
     guess = get_user_words()
     missed = get_pure_user_words(guess, lst, alll)
     with open('results.txt', 'w') as file:
@@ -139,5 +140,3 @@ def results():
         file.write("Possible guesses:\n")
         for word in missed:
             file.write(f"{word}, ")
-
-results()
