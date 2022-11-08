@@ -1,0 +1,6 @@
+Correct guesses:
+halt, 
+All possible words:
+akal, akha, altho, alto, atka, atokal, axal, hako, hala, halo, haloa, halt, hoax, kaha, kala, kalo, kath, katha, katha, kathal, khat, koala, kola, kota, kotal, lakota, lata, latah, latax, lath, lhota, loath, loka, lota, lota, oath, olax, taal, taha, tala, talak, talao, talk, toxa, 
+Possible guesses:
+koha, khxa, 

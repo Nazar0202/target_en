@@ -24,7 +24,6 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
-    
     arr = []
     data = []
     ans = []
@@ -63,7 +62,7 @@ def get_words(f: str, letters: List[str]) -> List[str]:
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
-    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter 
+    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter
     for Windows.
     Note: the user presses the enter key after entering each word.
     """
@@ -88,11 +87,57 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
-    pass
-
+    arr = []
+    ans = []
+    tmp = []
+    tmp_2 = []
+    tmp_3 = []
+    for l in letters:
+        tpl = (l, letters.count(l))
+        if tpl not in arr:
+            arr.append(tpl)
+    for word in user_words:
+        if (word not in words_from_dict) and (len(word) >= 3) and (letters[4] in word):
+            tmp.append(word)
+    for word in tmp:
+        tf = True
+        for l in word:
+            if l not in letters:
+                tf = False
+        if tf:
+            tmp_2.append(word)
+    for tpl in arr:
+        for word in tmp_2:
+            if word.count(tpl[0]) > tpl[1]:
+                tmp_3.append(word)
+    ans = [word for word in tmp_2 if word not in tmp_3]
+    return ans
 
 def results():
-    pass
+    """
+    Makes results file.
+    """
+    gen = generate_grid()
+    lst = []
+    print("Your letters:")
+    for g in gen:
+        print(g)
+        for a in g:
+            lst.append(a)
+    alll = get_words('en.txt', lst)  
+    guess = get_user_words()
+    missed = get_pure_user_words(guess, lst, alll)
+    with open('results.txt', 'w') as file:
+        file.write("Correct guesses:\n")
+        for word in [word for word in guess if word in alll]:
+            file.write(f"{word}, ")
+        file.write('\n')
+        file.write("All possible words:\n")
+        for word in alll:
+            file.write(f"{word}, ")
+        file.write('\n')
+        file.write("Possible guesses:\n")
+        for word in missed:
+            file.write(f"{word}, ")
 
-#print(get_words('en.txt', ['a','b','c','d','e','f','g','h','a']))
-#print(get_words('en.txt', [el for el in 'wumrovkif']))
+results()
